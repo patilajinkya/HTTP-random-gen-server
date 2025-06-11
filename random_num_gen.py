@@ -1,14 +1,13 @@
 from flask import Flask, jsonify
 import random
 
-num = random.randrange(0,1000000)
+random_nums = []
 
-app = Flask(__name__)
+def random_number_generator():
+    num = random.randrange(0,1000000)
+    random_nums.append(num)
+    print(random_nums)
+    return num
 
-@app.route('/random', methods=['GET'])
-def get_data():
-    data = {'random':num}
-    return jsonify(data)
 
-if __name__ == '__main__':
-        app.run(debug=True)
+
