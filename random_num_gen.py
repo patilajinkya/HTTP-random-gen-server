@@ -1,10 +1,9 @@
 import random
 
-random_nums = []
-
-def random_number_generator():
+def random_number_generator(existing_numbers):
+    random_nums = existing_numbers
     while True:
-        random_number = random.randrange(0,20)
+        random_number = random.randrange(0,30)
         if random_number not in random_nums:
             random_nums.append(random_number)
             return random_number
