@@ -1,13 +1,15 @@
 import mysql.connector
+from dotenv import load_dotenv
+import os
 
 
 def mysql_connection():
-
+    load_dotenv()
     mydb = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="new_password",
-    database="random_numbers"
+    host=os.getenv("HOSTNAME"),
+    user=os.getenv("USERNAME"),
+    password=os.getenv("PASSWORD"),
+    database=os.getenv("DATABASE")
     )
     return mydb
 
@@ -17,7 +19,6 @@ def mysql_insert_random_generated_numbers(rand_number):
     sql = "INSERT INTO numbers (num) VALUES (%s)"
     val = [rand_number]
     mycursor.execute(sql, val)
-
     mydb.commit()
     return True
 
@@ -36,6 +37,3 @@ def process_myresults_to_maintain_list(myresult):
         numbers.append(item[0])  # Extract the number from the tuple and add to the list
 
     return numbers
-
-
-
